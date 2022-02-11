@@ -1,19 +1,36 @@
 import React, {Component} from "react";
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
 import {availableColors} from "../../constants/constants";
-const Sound = require('react-native-sound');
+import {Audio} from "expo-av";
 export default class Alphabet extends Component{
+
     constructor(props) {
         super(props);
         // Sound.setCategory('Playback');
         this.state={
             currentColor:'00BCD4',
             borderColorChose:'00BCD4',
+            sound:null
         }
     }
 
     componentDidMount() {
         this.assignColor();
+    }
+
+
+    playSound = async (fileName) =>{
+
+        const { sound } = await Audio.Sound.createAsync(
+            require('../../assets/sounds/test.mp3')
+        );
+
+        this.setState({
+            sound:sound
+        })
+
+        console.log('Playing Sound');
+        await this.state.sound.playAsync();
     }
 
     assignColor = () =>{
@@ -32,19 +49,9 @@ export default class Alphabet extends Component{
     }
 
     alphabetClicked = () =>{
-
-        let alphabetSound = new Sound('/../assets/sounds/test.mp3', Sound.MAIN_BUNDLE, (error)=>{
-            if(error){
-                console.log(error);
-            }
-        });
-
-        alphabetSound.play((success => {
-            if(!success){
-                console.log("Sound did not play properly");
-            }
-        }))
-
+        this.playSound("test.mp3").then((sound)=>{
+            this.state.sound.unloadAsync();
+        })
        this.assignColor();
     }
 

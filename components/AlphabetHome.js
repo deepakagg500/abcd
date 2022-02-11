@@ -16,13 +16,15 @@ export default class AlphabetHome extends Component{
            return(<View style={styles.alphabetHome}>
                    <ScrollView
                        horizontal
-                       pagineEnabled
+                       pagingEnabled
                        showsHorizontalScrollIndicator={false}
                    >
                        {
-                           availableAlphabets.map(alphabet =>{
+                           availableAlphabets.map((alphabet,index) =>{
                                return(
-                               <View style={styles.alphabet}>
+                               <View
+                                   key ={index}
+                                   style={styles.alphabet}>
                                    <Draggable x={50} y={50}>
                                    <Alphabet
                                        currentAlphabet={alphabet}
