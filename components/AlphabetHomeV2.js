@@ -5,7 +5,7 @@ import {availableAlphabets} from "../constants/constants";
 import Draggable from "react-native-draggable";
 import AlphabetHome from "./AlphabetHome";
 import {shouldThrowAnErrorOutsideOfExpo} from "expo/build/environment/validatorState";
-
+// import DraggableFlatList from 'react-native-draggable-flatlist'
 const {width,height} = Dimensions.get('window')
 
 export default class AlphabetHomeV2 extends Component{
@@ -50,6 +50,12 @@ export default class AlphabetHomeV2 extends Component{
                numColumns={4}
               >
               </FlatList>
+            {/*<DraggableFlatList data={this.state.data}*/}
+            {/*          keyExtractor={(item, index) => item.id}*/}
+            {/*          renderItem={this.renderAlphabet}*/}
+            {/*          numColumns={4}*/}
+            {/*>*/}
+            {/*</DraggableFlatList>*/}
 
             <View
                 style={[{marginTop:20},{marginRight: width/10}]}
